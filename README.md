@@ -11,7 +11,9 @@ Finally, students will be able to generate a simple core and an SoC (multi-core 
   * [Windows Subsystem for Linux](#windows-subsystem-for-linux)
   * [Setting up your Conda environment](#setting-up-your-conda-environment)
   * [Setting up the Chipyard repository](#setting-up-the-chipyard-repository)
-
+- [Core selection](#core-selection) brings together 2 main core architectures
+  * [Rocket](#rocket)
+  * [BOOM](#boom)
 ## Quick installation
 
 The firsts steps of this configuration are OS-dependent.
@@ -102,3 +104,17 @@ conda env list
 ```shell
 source ./env.sh
 ```
+
+## Core selection
+
+It is now time to select your core architecture.
+*Chipyard offers many different core topologies, but they are all outside the scope of this project. Feel free to dig in and play with them*.
+[Configuring and Building Custom RISC-V SoCs in Chipyard](https://fires.im/isca22-slides-pdf/03_building_custom_socs.pdf) was used as a guide for the rest of this tutorial.
+
+### Rocket
+
+The [Rocket](./Rocket/) folder can be accessed here.
+
+### BOOM
+
+The [BOOM](./BOOM/) folder can be accessed here.
