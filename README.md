@@ -14,6 +14,7 @@ Finally, students will be able to generate a simple core and an SoC (multi-core 
 - [Core selection](#core-selection) brings together 2 main core architectures
   * [Rocket](#rocket)
   * [BOOM](#boom)
+
 ## Quick installation
 
 The firsts steps of this configuration are OS-dependent.
@@ -103,6 +104,11 @@ conda env list
 **This file must be created before running any** ```make``` **commands**, as it activates the conda environment created in ```build-setup.sh``` and sets up any necessary environment variables that may be needed later.
 ```shell
 source ./env.sh
+```
+
+:warning: **Executing a** ``make`` **command without correct sourcing produces the following error message:**
+```shell
+Makefile:5: *** Did not find Verilator in PATH. Make sure all requirements are installed.  Stop.
 ```
 
 ## Core selection

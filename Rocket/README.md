@@ -7,3 +7,14 @@ According to Chipyard's documentation:
 <img src="./screenshots/rocketchip-diagram.png" alt="rocket chip" width="500"/>
 </p>
 
+## Table of Contents
+
+- [Build your first rocket core](#build-your-first-rocket-core) explains how to generate RTL files for your first rocket core.
+    * [Setting up TutorialConfig](#setting-up-tutorialconfig)
+    * [Run a binary test](#run-a-binary-test)
+
+## Build your first rocket core
+
+### Setting up TutorialConfig
+
+### Run a binary test
