@@ -63,13 +63,13 @@ conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
 ```
 
-4. Finally, install ```conda lock``` into the ```base``` conda environment
+4. Finally, install ``conda lock`` into the ``base`` conda environment
 ```shell
 conda install -n base conda-lock==1.4.0
 conda activate base
 ```
 
-```(base)``` must appear in front of your username at the Linux prompt.
+``(base)`` must appear in front of your username at the Linux prompt.
 
 5. Check that Conda is correctly installed
 ```shell
@@ -84,7 +84,7 @@ git clone https://github.com/ucb-bar/chipyard.git
 cd chipyard
 ```
 
-2. Setup Chipyard with the correct ```riscv-tools``` toolchain.
+2. Setup Chipyard with the correct ``riscv-tools`` toolchain.
 ```shell
 ./build-setup.sh riscv-tools 
 ```
@@ -100,8 +100,8 @@ However, if you are interested in FPGA/ASICS implementation, please refer to [Fi
 conda env list
 ```
 
-4. When completed, an ```env.sh``` file should exist in the top-level directory.
-**This file must be created before running any** ```make``` **commands**, as it activates the conda environment created in ```build-setup.sh``` and sets up any necessary environment variables that may be needed later.
+4. When completed, an ``env.sh`` file should exist in the top-level directory.
+**This file must be created before running any** ``make`` **commands**, as it activates the conda environment created in ``build-setup.sh`` and sets up any necessary environment variables that may be needed later.
 ```shell
 source ./env.sh
 ```
