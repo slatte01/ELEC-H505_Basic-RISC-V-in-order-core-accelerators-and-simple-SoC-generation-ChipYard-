@@ -12,7 +12,7 @@ According to Chipyard's documentation:
 - [Build your first rocket core](#build-your-first-rocket-core) explains how to generate RTL files for your first rocket core.
     * [Setting up TutorialConfig](#setting-up-tutorialconfig)
     * [Run a binary test](#run-a-binary-test)
-- [Assessing the performance of the designed core](#assessing-the-performance-of-the-designed-core) demonstrates how to assess the performance of your rocket core
+- [Assessing the performance of the designed core](#assessing-the-performance-of-the-designed-core) demonstrates how to assess the performance of your rocket core.
     * [Benchmark](#benchmark)
     * [Customized project](#customized-project)
 
