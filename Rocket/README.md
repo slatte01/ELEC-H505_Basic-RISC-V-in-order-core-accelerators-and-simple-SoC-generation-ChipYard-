@@ -34,7 +34,7 @@ cd chipyard/generators/chipyard/src/main/scala/config
 
 The default architecture can be customised. Uncomment the line to activate the desired feature.
 
-:warning: ``WithInclusiveCache(nBanks=1, nWays=4, capacityKB=128)`` **seems to produce an error since**``nBanks``**is not recognised as a known parameter.**
+:warning: ``WithInclusiveCache(nBanks=1, nWays=4, capacityKB=128)`` **seems to produce an error since** ``nBanks`` **is not recognised as a known parameter.**
 
 
 2. Start the Verilator RTL build 
