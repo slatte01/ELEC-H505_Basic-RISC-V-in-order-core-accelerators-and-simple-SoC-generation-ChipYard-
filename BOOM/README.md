@@ -40,3 +40,20 @@ make CONFIG=TutorialStarterConfig
 ```
 
 This builds the RTL files associated with your ``TutorialStarterConfig``.
+
+### Run a binary test
+
+Once the RTL files for rocket's default core have been generated, it's time to check whether or not your architecture works, and to evaluate the corresponding performance.
+
+1. Navigate to the Verilator directory
+
+```shell
+cd chipyard/sims/verilator
+```
+
+2. Run a basic RISC-V binary test
+
+```shell
+export BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+make CONFIG=TutorialStarterConfig run-binary
+```
