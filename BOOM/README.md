@@ -15,4 +15,28 @@ The Berkeley Out-of-Order Machine ([BOOM](https://chipyard.readthedocs.io/en/sta
 
 ## Build your first boom core
 
-You can choose which BOOM core you want. There are four configuration: [SmallBOOM](./ConfigFiles/SmallBOOM.log), [MediumBOOM](./ConfigFiles/MediumBOOM.log), [LargeBOOM](./ConfigFiles/LargeBOOM.log) and [MegaBOOM](./ConfigFiles/MegaBOOM.log). The GigaBOOM option is present but not available yet.
+You can choose which BOOM core you want. There are four configuration: [SmallBOOM](./ConfigFiles/SmallBOOM.log), [MediumBOOM](./ConfigFiles/MediumBOOM.log), [LargeBOOM](./ConfigFiles/LargeBOOM.log) and [MegaBOOM](./ConfigFiles/MegaBOOM.log). The GigaBOOM option is present but cannot be generated at the moment.
+
+### Setting up TutorialConfig Boom
+
+Before compiling a custom configuration, it is strongly recommended that you understand how ``TutorialConfigs`` works.
+
+1. Have a look at the file
+
+```shell
+cd chipyard/generators/chipyard/src/main/scala/config
+```
+![Tutorial config](./screenshots/Tutorial%20config.png)
+
+The default architecture can be customised. Uncomment the line to activate the desired feature.
+
+:warning: ``WithInclusiveCache(nBanks=1, nWays=4, capacityKB=128)`` **seems to produce an error since** ``nBanks`` **is not recognised as a known parameter.**
+
+
+2. Start the Verilator RTL build 
+```shell
+cd chipyard/sims/verilator
+make CONFIG=TutorialStarterConfig
+```
+
+This builds the RTL files associated with your ``TutorialStarterConfig``.
