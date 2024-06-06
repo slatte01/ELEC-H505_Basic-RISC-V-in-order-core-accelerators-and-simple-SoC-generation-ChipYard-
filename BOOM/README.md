@@ -15,4 +15,4 @@ The Berkeley Out-of-Order Machine (*[BOOM](https://chipyard.readthedocs.io/en/st
 
 ## Build your first boom core
 
-You can choose which BOOM core you want. There are four configuration: *[SmallBOOM]("./ConfigFiles/SmallBOOM.log), MediumBOOM, LargeBOOM and MegaBOOM. The GigaBOOM option is present but not available yet.
+You can choose which BOOM core you want. There are four configuration: *[SmallBOOM](#config-small-boom), MediumBOOM, LargeBOOM and MegaBOOM. The GigaBOOM option is present but not available yet.

@@ -1,3 +1,5 @@
+#config-small-boom
+
 L2 InclusiveCache Client Map:
 	0 <= serial_tl_0
 	1 <= Core 0 DCache
