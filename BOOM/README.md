@@ -10,5 +10,9 @@ The Berkeley Out-of-Order Machine (*[BOOM](https://chipyard.readthedocs.io/en/st
 ## Table of Contents
 
 - [Build your first boom core](#build-your-first-boom-core) explains how to generate RTL files for your first boom core.
-    * [Setting up TutorialConfig](#setting-up-tutorialconfig)
-    * [Run a binary test](#run-a-binary-test)
+    * [Setting up TutorialConfig](#setting-up-tutorialconfig-boom)
+    * [Run a binary test](#run-a-binary-test-boom)
+
+## Build your first boom core
+
+You can choose which BOOM core you want. There are four configuration: *[SmallBOOM]("./ConfigFiles/SmallBOOM.log), MediumBOOM, LargeBOOM and MegaBOOM. The GigaBOOM option is present but not available yet.
