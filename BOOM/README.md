@@ -12,6 +12,7 @@ The Berkeley Out-of-Order Machine ([BOOM](https://chipyard.readthedocs.io/en/sta
 - [Build your first boom core](#build-your-first-boom-core) explains how to generate RTL files for your first boom core.
     * [Setting up TutorialConfig](#setting-up-tutorialconfig-boom)
     * [Run a binary test](#run-a-binary-test-boom)
+- [Custom your BOOM core](#custom-your-boom-core) explains how to custom your boom core.
 
 ## Build your first boom core
 
@@ -57,3 +58,5 @@ cd chipyard/sims/verilator
 export BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
 make CONFIG=TutorialStarterConfig run-binary
 ```
+
+## Custom your BOOM core
