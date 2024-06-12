@@ -60,3 +60,9 @@ make CONFIG=TutorialStarterConfig run-binary
 ```
 
 ## Custom your BOOM core
+
+To custom your BOOM core, there are some files containing the parameters of the core. They are locates at this location:
+
+```shell
+chipyard/generators/boom/src/main/scala/v3/common/config-mixins.scala
+```
