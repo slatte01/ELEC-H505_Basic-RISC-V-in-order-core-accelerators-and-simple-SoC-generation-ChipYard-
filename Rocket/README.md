@@ -15,6 +15,7 @@ According to Chipyard's documentation:
 - [Assessing the performance of the designed core](#assessing-the-performance-of-the-designed-core) demonstrates how to assess the performance of your rocket core.
     * [Benchmark](#benchmark)
     * [Customized project](#customized-project)
+    * [Impact of core size on performance](#impact-of-core-size-on-performance)
 
 ## Build your first rocket core
 
@@ -30,7 +31,7 @@ Before compiling a custom configuration, it is strongly recommended that you und
 ```shell
 cd chipyard/generators/chipyard/src/main/scala/config
 ```
-![Tutorial config](./screenshots/Tutorial%20config.png)
+![Tutorial config](./screenshots/tutorial%20config.png)
 
 The default architecture can be customised. Uncomment the line to activate the desired feature.
 
@@ -92,26 +93,28 @@ You run them by adding the make target ``run-bmark-tests``
 
 ```shell
 cd chipyard/sims/verilator
-make CONFIG=TutorialStarterConfig run-bmark-tests
+make CONFIG=YourRocketConfig run-bmark-tests
 ```
 
-and the output file resembles the initial binary test file, except that a summary of performance is displayed in the console window
+and the output file resembles the initial binary test files, except that a summary of performance is displayed in the console window
 
 ```shell
-cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.RocketConfig
+cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.YourRocketConfig
 ```
 ```shell
-[ PASSED ] chipyard/sims/verilator/output/chipyard.harness.TestHarness.RocketConfig/median.riscv.out
+[ PASSED ] chipyard/sims/verilator/output/chipyard.harness.TestHarness.YourRocketConfig/median.riscv.out
 Completed after             589916 simulation cycles
 ```
 
-These simulation cycles can be used to draw comparisons between your different architectures.
+Some of the generated ``.riscv.log`` files can be used to draw comparisons between your architectures, as the number of ``mcycle`` may differ
+
+![mcycle example](./screenshots/mcycle%20example.png)
 
 ### Customized project
 
 Chipyard also offers the option of running your core on [custom project](https://chipyard.readthedocs.io/en/stable/Simulation/Software-RTL-Simulation.html#custom-benchmarks-tests).
 
-1. Create your C program (for example "helloworld.c")
+1. Create your C program (for example [helloworld.c](./custom%20projects/helloworld.c))
 
 ```C
 #include <stdio.h>
@@ -141,7 +144,7 @@ make
 
 ```shell
 cd chipyard/sims/verilator
-make run-binary BINARY=../../tests/helloworld.riscv
+make CONFIG=YourRocketConfig run-binary BINARY=../../tests/helloworld.riscv
 ```
 
 After a while, it should be displayed in the console 
@@ -150,7 +153,88 @@ After a while, it should be displayed in the console
 5. Performance is evaluated in the output file
 
 ```shell
-cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.RocketConfig
+cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.YourRocketConfig
 ```
 
 ![out helloworld](./screenshots/out%20helloworld.png)
+
+### Impact of core size on performance
+
+The following section illustrates how custom projects can be used to monitor the impact of core size on the performance of your setups. Suppose, two configurations:
+
+| WithNSmallCores(1)  | WithNBigCores(1) |
+|     :---:      |     :---:      |
+| 16KiB cache size | 4KiB cache size |
+| 4-way set associative Icache and Dcache  | direct-mapped Icache and Dcache  |
+
+1. Add them to the ``RocketConfigs`` file
+
+```shell
+cd chipyard/generators/chipyard/src/main/scala/config
+```
+
+![small and big rocket config](./screenshots/small%20and%20big%20rocket%20config.png)
+
+Note that the ``RocketConfig`` is a default configuration.
+
+2. As in the tutorial, generate the correspondig RTL files
+
+```shell
+cd chipyard/sims/verilator
+make CONFIG=RocketConfig
+make CONFIG=SmallCoreRocketConfig
+```
+
+They should appear in the ``generated-src`` directory.
+
+3. Create your C program (for instance [matmul.c](./custom%20projects/matmul.c)). 
+The proposed script implements matrix multiplication, with the performance read function and the size defined as a macro
+
+```C
+// Read the performance register
+#define read_csr(reg) ({ unsigned long __temp; \
+  asm volatile ("csrr %0, " #reg : "=r"(__temp)); \
+  __temp; })
+
+// Matrix size
+#define SIZE 40
+```
+
+4. Add it to Chipyard's ``test`` directory, then add its name to the list of ``PROGRAMS`` inside the ``Makefile``
+
+```Makefile
+PROGRAMS = pwm blkdev accum charcount nic-loopback big-blkdev pingd \
+           streaming-passthrough streaming-fir nvdla spiflashread spiflashwrite fft gcd \
+           hello mt-hello symmetric matmul
+```
+
+5. Generate all the ``.riscv`` ELF binaries
+
+```shell
+cd chipyard/tests
+make
+```
+
+6. Enter Verilator and run the generated binary for both configurations
+
+```shell
+cd chipyard/sims/verilator
+make CONFIG=RocketConfig run-binary BINARY=../../tests/matmul.riscv
+make CONFIG=SmallCoreRocketConfig run-binary BINARY=../../tests/matmul.riscv
+```
+
+This should result in a ``matmul.riscv.log`` file which can be used to assess the impact of core size on performance
+
+```shell
+cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.RocketConfig
+cd chipyard/sims/verilator/output/chipyard.harness.TestHarness.SmallCoreRocketConfig
+```
+
+:warning: **Increasing the size of the matrix too much seems to produce an error. It is suspected that the maximum permitted simulation cycle has been reached. Feel free to dig into the configuration files to increase this limit beyond the current value.**
+
+7. Repeat steps 3 to 6, changing the size of the matrix.
+Don't forget to save the various ``matmul.riscv.log`` files in an appropriate folder, as the new files generated will overwrite the existing ones.
+
+8. Use the proposed python script [performance.py](./custom%20projects/performance.py) to display the simulation results
+
+![simulation results](./screenshots/CLK%20cycles%20for%20different%20matrix%20sizes.png)
