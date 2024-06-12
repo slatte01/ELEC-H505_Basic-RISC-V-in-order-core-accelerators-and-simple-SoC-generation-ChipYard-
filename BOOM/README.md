@@ -61,8 +61,11 @@ make CONFIG=TutorialStarterConfig run-binary
 
 ## Custom your BOOM core
 
-To custom your BOOM core, there are some files containing the parameters of the core. They are locates at this location:
+To custom your BOOM core, there are some files containing the parameters of the core. The path to those files is:
 
 ```shell
 chipyard/generators/boom/src/main/scala/v3/common/config-mixins.scala
+chipyard/generators/boom/src/main/scala/v3/common/parameters.scala
 ```
+
+Here is how to modify the number of registers. In the config-mixins.scala file, go to lines 102 and 103. These are the lines where you can specify the number of integer and floating point registers you want. It has been succesfully tested for thedouble of their value (numIntPhysRegisters = 104 and numFpPhysRegisters = 96). For the other BOOM configurations, you need to go below in the file and the same parameter exist in the corresponding class.
