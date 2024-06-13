@@ -1,7 +1,7 @@
 # BOOM core
 
 According to Chipyard's documentation:
-The Berkeley Out-of-Order Machine ([BOOM](https://chipyard.readthedocs.io/en/stable/Generators/BOOM.html)) is a synthesizable and parameterizable open source RV64GC RISC-V core written in the Chisel hardware construction language. It serves as a drop-in replacement to the Rocket core given by Rocket Chip (replaces the RocketTile with a BoomTile). BOOM is heavily inspired by the MIPS R10k and the Alpha 21264 out-of-order processors. Like the R10k and the 21264, BOOM is a unified physical register file design (also known as “explicit register renaming”). Conceptually, BOOM is broken up into 10 stages: Fetch, Decode, Register Rename, Dispatch, Issue, Register Read, Execute, Memory, Writeback and Commit. However, many of those stages are combined in the current implementation, yielding seven stages: Fetch, Decode/Rename, Rename/Dispatch, Issue/RegisterRead, Execute, Memory and Writeback (Commit occurs asynchronously, so it is not counted as part of the “pipeline”).
+The Berkeley Out-of-Order Machine ([BOOM](https://chipyard.readthedocs.io/en/stable/Generators/BOOM.html)) is a synthesizable and parameterizable open source RV64GC RISC-V core written in the Chisel hardware construction language. It serves as a drop-in replacement to the Rocket core given by Rocket Chip (replaces the RocketTile with a BoomTile). BOOM is heavily inspired by the MIPS R10k and the Alpha 21264 out-of-order processors. Like the R10k and the 21264, BOOM is a unified physical register file design (also known as “explicit register renaming”). Conceptually, BOOM is broken up into 10 stages: Fetch, Decode, Register Rename, Dispatch, Issue, Register Read, Execute, Memory, Writeback and Commit. However, many of those stages are combined in the current implementation, yielding seven stages: Fetch, Decode/Rename, Rename/Dispatch, Issue/RegisterRead, Execute, Memory and Writeback (Commit occurs asynchronously, so it is not counted as part of the “pipeline”). You can also find the BOOM documentation [here](https://docs.boom-core.org/en/latest/).
 
 <p align='center'>
 <img src="./screenshots/BoomCore.PNG" alt="boom core" width="500"/>
@@ -12,6 +12,7 @@ The Berkeley Out-of-Order Machine ([BOOM](https://chipyard.readthedocs.io/en/sta
 - [Build your first boom core](#build-your-first-boom-core) explains how to generate RTL files for your first boom core.
     * [Setting up TutorialConfig](#setting-up-tutorialconfig-boom)
     * [Run a binary test](#run-a-binary-test-boom)
+- [Custom your BOOM core](#custom-your-boom-core) explains how to custom your boom core.
 
 ## Build your first boom core
 
@@ -57,3 +58,14 @@ cd chipyard/sims/verilator
 export BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
 make CONFIG=TutorialStarterConfig run-binary
 ```
+
+## Custom your BOOM core
+
+To custom your BOOM core, there are some files containing the parameters of the core. The path to those files is:
+
+```shell
+chipyard/generators/boom/src/main/scala/v3/common/config-mixins.scala
+chipyard/generators/boom/src/main/scala/v3/common/parameters.scala
+```
+
+Here is how to modify the number of registers. In the config-mixins.scala file, go to lines 102 and 103. These are the lines where you can specify the number of integer and floating point registers you want. It has been succesfully tested for thedouble of their value (numIntPhysRegisters = 104 and numFpPhysRegisters = 96). For the other BOOM configurations, you need to go below in the file and the same parameter exist in the corresponding class.
