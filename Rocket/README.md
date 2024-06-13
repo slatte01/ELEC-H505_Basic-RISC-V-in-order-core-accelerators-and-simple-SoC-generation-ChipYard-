@@ -31,7 +31,7 @@ Before compiling a custom configuration, it is strongly recommended that you und
 ```shell
 cd chipyard/generators/chipyard/src/main/scala/config
 ```
-![Tutorial config](./screenshots/tutorial%20config.png)
+![Tutorial config](./screenshots/tuto%20config.png)
 
 The default architecture can be customised. Uncomment the line to activate the desired feature.
 
