@@ -31,7 +31,7 @@ Before compiling a custom configuration, it is strongly recommended that you und
 ```shell
 cd chipyard/generators/chipyard/src/main/scala/config
 ```
-![Tutorial config](./screenshots/tutorial%20config.png)
+![Tutorial config](./screenshots/CLK%20cycles%20for%20different%20matrix%20sizes.png)
 
 The default architecture can be customised. Uncomment the line to activate the desired feature.
 
