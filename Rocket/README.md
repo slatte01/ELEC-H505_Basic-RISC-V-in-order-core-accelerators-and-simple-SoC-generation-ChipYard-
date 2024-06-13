@@ -74,7 +74,7 @@ and the number of simulation cycles
 ![out passed](./screenshots/out%20rv-64-ui-simple%20passed.png)
 
 Of course, not all tests are relevant to all architectures.
-It is possible for two completely different architectures to produce the same results for the same test, simply because the test is not adapted to compare what needs to be compared. Ask a dog and a cat to multiply two numbers, and the result won't help you work out which one eats its bowl faster. This twisted analogy shows that choosing the right test is not so trivial...
+It is possible for two completely different architectures to produce the same results for the same test, simply because the test is not adapted to compare what needs to be compared. *Ask a dog and a cat to multiply two numbers, and the result won't help you work out which one eats its bowl faster*. This twisted analogy shows that choosing the right test is not so trivial...
 To solve this problem, you can either run all the binary tests available and then compare several output files, or implement your own custom project.
 
 ## Assessing the performance of the designed core
