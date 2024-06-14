@@ -18,9 +18,9 @@ def extract_data(file_path):
     return mcycle, minstret
 
 
-# File paths fot the different matrix sizes
-file_paths_small = ['Path to the folder were your configuration results are stored']
-file_paths_large = ['Path to the folder were your configuration results are stored']
+# File paths
+file_paths_small = ['Path to the folder were your results are stored']
+file_paths_large = ['Path to the folder were your results are stored']
 
 # Matrix sizes
 matrix_sizes = ['Add the different matrix sizes']
