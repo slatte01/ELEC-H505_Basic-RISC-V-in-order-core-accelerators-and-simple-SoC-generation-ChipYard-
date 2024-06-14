@@ -29,7 +29,7 @@ matrix_sizes = ['Add the different matrix sizes']
 data_small = [extract_data(file) for file in file_paths_small]
 data_large = [extract_data(file) for file in file_paths_large]
 
-# Get cycles and instrcutions
+# Get cycles and instructions
 mcycle_small, minstret_small = zip(*data_small)
 mcycle_large, minstret_large = zip(*data_large)
 
