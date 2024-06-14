@@ -19,8 +19,8 @@ def extract_data(file_path):
 
 
 # File paths fot the different matrix sizes
-file_paths_small = ['Add your path to the different .riscv.log files']
-file_paths_large = ['Add your path to the different .riscv.log files']
+file_paths_small = ['Path to the folder were your configurations results are stored']
+file_paths_large = ['Path to the folder were your configurations results are stored']
 
 # Matrix sizes
 matrix_sizes = ['Add the different matrix sizes']
